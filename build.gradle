@@ -1,0 +1,46 @@
+apply plugin: "war"
+
+repositories {
+    maven {
+        url 'http://mavenproxy.finntech.no/finntech-release/'
+    }
+}
+
+configurations {
+    solr
+}
+
+ext.versions = [
+    solr: "4.8.1",
+    log4j2: "2.0-rc1"
+]
+
+dependencies {
+    solr "org.apache.solr:solr:${versions.solr}@war"
+
+    compile (
+        "net.logstash.log4j2:log4j2-logstash-jsonevent-layout:1.0.0-finn-1",
+        "org.apache.logging.log4j:log4j-api:${versions.log4j2}",
+        "org.apache.logging.log4j:log4j-core:${versions.log4j2}",
+        "org.apache.logging.log4j:log4j-jcl:${versions.log4j2}",
+        "org.apache.logging.log4j:log4j-1.2-api:${versions.log4j2}",
+        "org.apache.logging.log4j:log4j-slf4j-impl:${versions.log4j2}",
+    )
+}
+
+task unzip(type: Copy) {
+    from {
+        configurations.solr.collect { zipTree(it) }
+    }
+    into "$buildDir/rootContent"
+}
+
+defaultTasks 'war'
+war.dependsOn('unzip')
+war {
+    from "$buildDir/rootContent"
+    baseName = "solr-log4j2"
+    classifier "1"
+    version "${versions.solr}"
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+}

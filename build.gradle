@@ -40,7 +40,7 @@ war.dependsOn('unzip')
 war {
     from "$buildDir/rootContent"
     baseName = "solr-log4j2"
-    classifier "1"
+    classifier "2"
     version "${versions.solr}"
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 }

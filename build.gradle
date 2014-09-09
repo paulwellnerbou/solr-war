@@ -29,6 +29,10 @@ dependencies {
     )
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
 task unzip(type: Copy) {
     from {
         configurations.solr.collect { zipTree(it) }

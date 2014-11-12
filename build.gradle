@@ -1,4 +1,4 @@
-apply plugin: "war"
+:apply plugin: "war"
 
 repositories {
     maven {
@@ -30,6 +30,7 @@ dependencies {
         "org.slf4j:slf4j-api:${versions.slf4j}",
         "org.slf4j:jul-to-slf4j:${versions.slf4j}",
         "org.slf4j:jcl-over-slf4j:${versions.slf4j}",
+        "com.lmax:disruptor:3.3.0"
     )
 }
 
@@ -49,7 +50,7 @@ war.dependsOn('unzip')
 war {
     from "$buildDir/rootContent"
     baseName = "solr-log4j2"
-    classifier "1"
+    classifier "2"
     version "${versions.solr}"
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 }

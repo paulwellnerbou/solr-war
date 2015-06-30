@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 group 'de.wellnerbou.solr'
-version '1.0-solr47-log4j2-SNAPSHOT'
+version '1.0-solr47-log4j2'
 
 repositories {
     jcenter()

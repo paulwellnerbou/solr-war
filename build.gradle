@@ -53,10 +53,19 @@ war {
     duplicatesStrategy DuplicatesStrategy.EXCLUDE
 }
 
+if (!project.hasProperty("publishUser")) {
+    ext.publishUser = ""
+    ext.publishPassword = ""
+}
+
+if (!project.hasProperty("repo")) {
+    ext.repo = "$buildDir/repo"
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            from components.web
         }
     }
     repositories {

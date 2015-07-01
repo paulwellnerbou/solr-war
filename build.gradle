@@ -2,8 +2,14 @@ apply plugin: "war"
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
+ext.versions = [
+        solr: "4.7.2",
+        log4j: "2.1",
+        slf4j: "1.7.9"
+]
+
 group 'de.wellnerbou.solr'
-version '1.0-solr47-log4j2'
+version "1.0-solr-${versions.solr}-log4j2"
 
 repositories {
     jcenter()
@@ -12,12 +18,6 @@ repositories {
 configurations {
     solr
 }
-
-ext.versions = [
-    solr: "4.7.2",
-    log4j: "2.1",
-    slf4j: "1.7.9"
-]
 
 dependencies {
     solr "org.apache.solr:solr:${versions.solr}@war"

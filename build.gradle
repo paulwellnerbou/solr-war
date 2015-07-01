@@ -9,7 +9,7 @@ ext.versions = [
 ]
 
 group 'de.wellnerbou.solr'
-version "1.0-solr-${versions.solr}-log4j2"
+version "1.0-solr-${versions.solr}-log4j1"
 
 repositories {
     jcenter()
